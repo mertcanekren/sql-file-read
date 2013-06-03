@@ -2,8 +2,12 @@
 <a href="?f=2.sql">2.sql</a><br/><hr/>
 <?php
 Header('Content-Type: Text/html; Charset=utf8');
-
-$sql = @fopen ($_GET["f"],'r');
+if(!$_GET["f"]){
+	$sql = @fopen ("1.sql",'r');
+}else{
+    $sql = @fopen ($_GET["f"],'r');
+    
+}
 
 if($sql){
 	while(!feof ($sql)){
@@ -13,7 +17,8 @@ if($sql){
     	}
   	}
 }
-fclose($sql);
+
+@fclose($sql);
 
 $array_number = array();
 $top = -1;
